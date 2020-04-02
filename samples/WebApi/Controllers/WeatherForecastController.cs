@@ -19,11 +19,6 @@ namespace WebApi.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private static readonly string[] userEmails = new[]
-        {
-            "user@example.com"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly INotification _notification;
         private readonly IConfiguration _configuration;
@@ -51,9 +46,9 @@ namespace WebApi.Controllers
 
             var message = new EmailMessage()
             {
-                ToAddresses = userEmails.ToList(),
+                ToAddresses = new List<string> { _configuration.GetValue<string>("SampleUsers") },
                 FromAddress = _configuration.GetValue<string>("DefaultFromAddress"),
-                Subject = "Weather Forecast",
+                Subject = "[GoNotify] Weather Forecast",
                 Body = $"Forecast: {JsonConvert.SerializeObject(items)}"
             };
             var result = await _notification.SendEmailWithSmtp(message);
