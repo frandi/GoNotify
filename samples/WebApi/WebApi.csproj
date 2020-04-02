@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\GoNotify.AspNetCore\GoNotify.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\GoNotify.Provider.EmailSmtp\GoNotify.Provider.EmailSmtp.csproj" />
+    <ProjectReference Include="..\..\src\GoNotify.Provider.SendGrid\GoNotify.Provider.SendGrid.csproj" />
   </ItemGroup>
 
 

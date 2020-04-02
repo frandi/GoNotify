@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoNotify.AspNetCore", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "samples\WebApi\WebApi.csproj", "{A1980AF2-84A4-4276-9D11-793E22015447}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoNotify.Provider.SendGrid", "src\GoNotify.Provider.SendGrid\GoNotify.Provider.SendGrid.csproj", "{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,18 @@ Global
 		{A1980AF2-84A4-4276-9D11-793E22015447}.Release|x64.Build.0 = Release|Any CPU
 		{A1980AF2-84A4-4276-9D11-793E22015447}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1980AF2-84A4-4276-9D11-793E22015447}.Release|x86.Build.0 = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|x64.Build.0 = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Debug|x86.Build.0 = Debug|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|x64.ActiveCfg = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|x64.Build.0 = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|x86.ActiveCfg = Release|Any CPU
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +117,7 @@ Global
 		{5403DDE2-3985-45DE-97C9-60DB9B212772} = {3E8B922D-8C7C-4723-A0C4-E4552793976F}
 		{708CD600-0BE7-4B9B-B507-C6BD715DAAD5} = {E6A75B69-4C32-40F0-A45E-54A4F5B90990}
 		{A1980AF2-84A4-4276-9D11-793E22015447} = {3E8B922D-8C7C-4723-A0C4-E4552793976F}
+		{61B9E540-9F29-4959-AD4F-3BEA676DFAAF} = {E6A75B69-4C32-40F0-A45E-54A4F5B90990}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F75AE8C1-A324-4A69-BE6C-78AFF505B53A}

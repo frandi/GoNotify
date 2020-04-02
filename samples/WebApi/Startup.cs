@@ -30,6 +30,10 @@ namespace WebApi
                     options.Username = Configuration.GetValue<string>("Smtp:Username");
                     options.Password = Configuration.GetValue<string>("Smtp:Password");
                     options.UseSSL = Configuration.GetValue<bool>("Smtp:UseSSL");
+                })
+                .AddProvider<SendGridProvider, SendGridOptions>(options =>
+                {
+                    options.Apikey = Configuration.GetValue<string>("SendGrid:ApiKey");
                 });
         }
 

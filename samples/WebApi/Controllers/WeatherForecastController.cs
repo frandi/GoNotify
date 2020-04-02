@@ -44,11 +44,19 @@ namespace WebApi.Controllers
             })
             .ToArray();
 
+            await SendEmailWithSmtp(items);
+            await SendEmailWithSendGrid(items);
+
+            return items;
+        }
+
+        private async Task SendEmailWithSmtp(WeatherForecast[] items)
+        {
             var message = new EmailMessage()
             {
                 ToAddresses = new List<string> { _configuration.GetValue<string>("SampleUsers") },
                 FromAddress = _configuration.GetValue<string>("DefaultFromAddress"),
-                Subject = "[GoNotify] Weather Forecast",
+                Subject = "[GoNotify - SMTP] Weather Forecast",
                 Body = $"Forecast: {JsonConvert.SerializeObject(items)}"
             };
             var result = await _notification.SendEmailWithSmtp(message);
@@ -57,8 +65,33 @@ namespace WebApi.Controllers
                 _logger.LogDebug("Email notification was sent to {toAddresses}", message.ToAddresses);
             else
                 _logger.LogWarning("Failed to send notification to {toAddresses}. Error: {error}", message.ToAddresses, result.Errors);
+        }
 
-            return items;
+        private async Task SendEmailWithSendGrid(WeatherForecast[] items)
+        {
+            var htmlContent = "<h1>Forecast</h1>";
+            htmlContent += "<ul>";
+            foreach (var item in items)
+            {
+                htmlContent += $"<li>{JsonConvert.SerializeObject(item)}</li>";
+            }
+            htmlContent += "</ul>";
+
+            var sgMessage = new SendGridMessage()
+            {
+                ToAddresses = new List<string> { _configuration.GetValue<string>("SampleUsers") },
+                FromAddress = _configuration.GetValue<string>("DefaultFromAddress"),
+                Subject = "[GoNotify - SendGrid] Weather Forecast",
+                PlainContent = $"Forecast: {JsonConvert.SerializeObject(items)}",
+                HtmlContent = htmlContent
+            };
+
+            var result = await _notification.SendEmailWithSendGrid(sgMessage);
+
+            if (result.IsSuccess)
+                _logger.LogDebug("Email notification was sent to {toAddresses}", sgMessage.ToAddresses);
+            else
+                _logger.LogWarning("Failed to send notification to {toAddresses}. Error: {error}", sgMessage.ToAddresses, result.Errors);
         }
     }
 }
