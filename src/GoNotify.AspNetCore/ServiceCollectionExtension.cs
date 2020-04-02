@@ -19,7 +19,7 @@ namespace GoNotify
             if (!services.Any(sc => sc.ServiceType == typeof(INotification)))
                 services.AddTransient<INotification, Notification>();
 
-            return new NotificationBuilder(services);
+            return new NotificationBuilder(services, NotificationProviderFactory.GetInstance());
         }
     }
 }

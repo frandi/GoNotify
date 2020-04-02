@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -13,20 +14,26 @@ namespace GoNotify
     {
         private readonly SmtpOptions _smtpOptions;
 
-        public EmailSmtpProvider()
-            : base(new SmtpOptions())
+        /// <summary>
+        /// Instantiate the <see cref="EmailSmtpProvider"/>
+        /// </summary>
+        /// <param name="smtpOptions">The SMTP options</param>
+        /// <param name="loggerFactory">The logger factory</param>
+        public EmailSmtpProvider(SmtpOptions smtpOptions, ILoggerFactory loggerFactory)
+            : base(smtpOptions, loggerFactory)
         {
-            _smtpOptions = new SmtpOptions();
+            _smtpOptions = smtpOptions;
         }
 
         /// <summary>
         /// Instantiate the <see cref="EmailSmtpProvider"/>
         /// </summary>
         /// <param name="smtpOptions">The SMTP options</param>
-        public EmailSmtpProvider(SmtpOptions smtpOptions, ILoggerFactory loggerFactory)
-            : base(smtpOptions, loggerFactory)
+        /// <param name="loggerFactory">The logger factory</param>
+        public EmailSmtpProvider(IOptions<SmtpOptions> smtpOptions, ILoggerFactory loggerFactory)
+            : base(smtpOptions.Value, loggerFactory)
         {
-            _smtpOptions = smtpOptions;
+            _smtpOptions = smtpOptions.Value;
         }
 
         /// <summary>

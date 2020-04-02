@@ -4,21 +4,15 @@ using System.Threading.Tasks;
 namespace GoNotify
 {
     /// <summary>
-    /// The notification provider that will send the message
+    /// The base class for notification provider that will send the message
     /// </summary>
     public abstract class NotificationProvider
     {
-        protected NotificationProvider(NotificationProviderOptions options)
-        {
-            Options = options;
-
-            var loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder.SetMinimumLevel(LogLevel.Debug).AddConsole();
-            });
-            Logger = loggerFactory.CreateLogger(GetType().FullName);
-        }
-
+        /// <summary>
+        /// Intantiate the <see cref="NotificationProvider"/>
+        /// </summary>
+        /// <param name="options">The options for the notification provider</param>
+        /// <param name="loggerFactory">The logger factory</param>
         protected NotificationProvider(NotificationProviderOptions options, ILoggerFactory loggerFactory)
         {
             Options = options;
@@ -30,7 +24,14 @@ namespace GoNotify
         /// </summary>
         public abstract string Name { get; }
 
+        /// <summary>
+        /// The generic options for the notification provider
+        /// </summary>
         protected NotificationProviderOptions Options { get; }
+
+        /// <summary>
+        /// The logger object
+        /// </summary>
         protected ILogger Logger { get; }
 
         /// <summary>

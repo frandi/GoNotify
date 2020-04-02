@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GoNotify
@@ -17,7 +16,8 @@ namespace GoNotify
         /// <summary>
         /// Instantiate the <see cref="Notification"/>
         /// </summary>
-        /// <param name="options">The notification options</param>
+        /// <param name="logger">The logger object</param>
+        /// <param name="providerFactory">The factory for the notification providers</param>
         public Notification(ILogger<Notification> logger, INotificationProviderFactory providerFactory)
         {
             _logger = logger;
